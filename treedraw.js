@@ -176,7 +176,7 @@ function VisDataSet(){
 		nodes.push(ind);
 	});
 	fams().each(function(r){
-		var current_id = 170 + Id2Int(r.id);
+		var current_id = 500 + Id2Int(r.id);
 		var fam = {
 			"id": current_id,
 			"shape": 'text'
