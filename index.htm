@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Gedcom</title>
+	<link rel="stylesheet" type="text/css" href="tree.css">
+	<link rel="stylesheet" type="text/css" href="http://visjs.org/dist/vis-network.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="taffy-min.js"></script>
+	<script type="text/javascript" src="gedcom2.js"></script>
+	<script type="text/javascript" src="treedraw.js"></script>
+	<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+	<script type="text/javascript" src="graph.js"></script>
+</head>
+<body>
+	<input type="file" id="gedfile" name="gedfile"/>
+	<input type="hidden" id="gedcontent">
+	<button onclick="draw();">Draw</button>
+	<button onclick="workingsize();">Workingsize</button>
+	<button onclick="photosize();">Photosize</button>
+	<div id="mynetwork"></div>
+	<script type="text/javascript">
+		document.getElementById('gedfile').addEventListener('change', handleFileSelect, false);
+	</script>
+</body>
+</html>
