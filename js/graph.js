@@ -49,12 +49,34 @@ function draw() {
   network = new vis.Network(container, data, options);
 }
 
+var photo = {"w": 7660, "h": 5120};
+
 function workingsize(){
-  $('#mynetwork').css('width',766);
-  $('#mynetwork').css('height',512);
+  $('#mynetwork').css('width',parseInt(photo.w/10));
+  $('#mynetwork').css('height',parseInt(photo.h/10));
 }
 
 function photosize(){
   $('#mynetwork').css('width',7660);
   $('#mynetwork').css('height',5120);
+}
+
+function fsSize(){
+  var sw = window.innerWidth;
+  var sh = window.innerHeight - 50;
+  var sar = sw / sh;
+  var par = photo.w / photo.h;
+  var w = 0;
+  var h = 0;
+  if(sar>=par){
+    h = sh;
+    w = h * par;
+  }
+  else{
+    w = sh;
+    h = w / par;
+  }
+
+  $('#mynetwork').css('width',w);
+  $('#mynetwork').css('height',h);
 }
