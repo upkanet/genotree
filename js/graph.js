@@ -5,6 +5,8 @@ var network = null;
 
 // Called when the Visualization API is loaded.
 function draw() {
+  console.log("Start drawing...");
+
   var vdataset = VisDataSet();
   // create people.
   // value corresponds with the age of the person
@@ -47,6 +49,7 @@ function draw() {
     }
   };
   network = new vis.Network(container, data, options);
+  console.log("Drawing completed");
 }
 
 var photo = {"w": 7660, "h": 5120};

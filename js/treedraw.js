@@ -186,24 +186,24 @@ function VisDataSet(){
 		//Husb to Family
 		edges.push({
 			"from": Id2Int(r.HUSB),
-			"to": current_id
+			"to": current_id,
 		});
 		//Wife to Family
 		edges.push({
 			"from": Id2Int(r.WIFE),
-			"to": current_id
+			"to": current_id,
 		});
 		//Husb to Wife
 		edges.push({
 			"from": Id2Int(r.HUSB),
-			"to": Id2Int(r.WIFE)
+			"to": Id2Int(r.WIFE),
 		});
 		//Family to Child
 		var incr = "";
 		while(r["CHIL" + incr]){
 			edges.push({
 				"from": current_id,
-				"to": Id2Int(r["CHIL" + incr])
+				"to": Id2Int(r["CHIL" + incr]),
 			});
 			incr = parseInt(1 + incr);
 		}

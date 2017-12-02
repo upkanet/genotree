@@ -107,5 +107,7 @@ function handleFileSelect(evt) {
     // files is a FileList of File objects. List some properties.
     reader.onload = function(evt2){
         parsegedfile(evt2.target.result);
+        console.log(indivs().count() + " poeple registered");
+        console.log(fams().count() + " families registered");
     }
 }
