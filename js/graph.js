@@ -83,3 +83,7 @@ function fsSize(){
   $('#mynetwork').css('width',w);
   $('#mynetwork').css('height',h);
 }
+
+function switchPhysics(){
+  network.physics.options.enabled = !network.physics.options.enabled;
+}

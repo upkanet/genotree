@@ -179,7 +179,7 @@ function VisDataSet(){
 		var current_id = 500 + Id2Int(r.id);
 		var fam = {
 			"id": current_id,
-			"shape": 'text'
+			"shape": 'diamond'
 		};
 		nodes.push(fam);
 		//EDGES
@@ -187,11 +187,13 @@ function VisDataSet(){
 		edges.push({
 			"from": Id2Int(r.HUSB),
 			"to": current_id,
+			"arrows": 'to',
 		});
 		//Wife to Family
 		edges.push({
 			"from": Id2Int(r.WIFE),
 			"to": current_id,
+			"arrows": 'to',
 		});
 		//Husb to Wife
 		edges.push({
@@ -204,6 +206,7 @@ function VisDataSet(){
 			edges.push({
 				"from": current_id,
 				"to": Id2Int(r["CHIL" + incr]),
+				"arrows": 'to',
 			});
 			incr = parseInt(1 + incr);
 		}
