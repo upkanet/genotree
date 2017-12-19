@@ -2,6 +2,11 @@
 var nodes = null;
 var edges = null;
 var network = null;
+var selectedNodes = [];
+
+Array.prototype.pushunique = function(e) {
+  if(this.indexOf(e) < 0) this.push(e);
+}
 
 // Called when the Visualization API is loaded.
 function draw() {
@@ -49,11 +54,44 @@ function draw() {
     },
     "interaction":{
       "multiselect": true,
+    },
+    "layout":{
+      "improvedLayout":false,
     }
   };
   network = new vis.Network(container, data, options);
+  //Click
+  network.on('click',function(params){
+    var nid = params.nodes[0];
+    //Case family id
+    if(nid >= 500){
+      selectFromFamNode(nid, 'from');
+    }
+    else if(nid){
+      selectedNodes.pushunique(nid);
+    }
+    //Case not a node
+    if(!nid){
+      //Clear selection
+      selectedNodes = [];
+    }
+    network.selectNodes(selectedNodes);
+  });
+
   console.log("Drawing completed");
 }
+
+
+function selectFromFamNode(famNodeId, direction){
+  var parNodes = network.getConnectedNodes(famNodeId, direction);
+  console.log("add "+famNodeId);
+  selectedNodes.pushunique(famNodeId);
+  parNodes.forEach(function(e){
+    console.log("add "+e);
+    selectedNodes.pushunique(e);
+  });
+}
+
 
 //Canvas size
 var photoheight = 5120;
