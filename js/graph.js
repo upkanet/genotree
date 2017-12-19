@@ -46,6 +46,9 @@ function draw() {
       },
       "minVelocity": 0.75,
       "timestep": 1
+    },
+    "interaction":{
+      "multiselect": true,
     }
   };
   network = new vis.Network(container, data, options);
@@ -93,5 +96,10 @@ function changeRatio(){
 }
 
 function switchPhysics(){
+  var swVal = 'On';
   network.physics.options.enabled = !network.physics.options.enabled;
+  if(!network.physics.options.enabled){
+    swVal = 'Off';
+  }
+  $('#physicBtn').html('Physics '+swVal);
 }

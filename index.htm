@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Genotree</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/tree.css">
 	<link rel="stylesheet" type="text/css" href="http://visjs.org/dist/vis-network.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -14,7 +15,7 @@
 	<input type="file" id="gedfile" name="gedfile"/>
 	<input type="hidden" id="gedcontent">
 	<button onclick="draw();">Draw</button>
-	<button onclick="switchPhysics();">Physic Switch</button>
+	<button id="physicBtn" onclick="switchPhysics();">Physics On</button>
 	Ratio 
 	<select id="ratiof" onChange="changeRatio();">
 		<option value="1">1:1 (carr&eacute;)</option>
@@ -22,7 +23,7 @@
 		<option value="3">3:1 (panoramique)</option>
 	</select>
 	<button onclick="workingsize();">Workingsize</button>
-	<button onclick="fsSize();">FullScreen</button>
+	<button onclick="fsSize();">Fit Screen</button>
 	<button onclick="photosize();">Photosize</button>
 	<div id="mynetwork"></div>
 	<script type="text/javascript">

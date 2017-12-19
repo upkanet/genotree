@@ -179,7 +179,8 @@ function VisDataSet(){
 		var current_id = 500 + Id2Int(r.id);
 		var fam = {
 			"id": current_id,
-			"shape": 'diamond'
+			"shape": 'circle',
+			"size": 2,
 		};
 		nodes.push(fam);
 		//EDGES
