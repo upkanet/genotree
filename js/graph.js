@@ -52,36 +52,44 @@ function draw() {
   console.log("Drawing completed");
 }
 
-var photo = {"w": 7660, "h": 5120};
+//Canvas size
+var photoheight = 5120;
+var currentheight = photoheight/10;
+var ratio = 1.5;
+
+function resizeCanvas(){
+  $('#mynetwork').css('height',currentheight);
+  $('#mynetwork').css('width',currentheight*ratio);
+}
 
 function workingsize(){
-  $('#mynetwork').css('width',parseInt(photo.w/10));
-  $('#mynetwork').css('height',parseInt(photo.h/10));
+  currentheight = photoheight / 10;
+  resizeCanvas();
 }
 
 function photosize(){
-  $('#mynetwork').css('width',7660);
-  $('#mynetwork').css('height',5120);
+  currentheight = photoheight;
+  resizeCanvas();
 }
 
 function fsSize(){
-  var sw = window.innerWidth;
+  var sw = window.innerWidth - 20;
   var sh = window.innerHeight - 50;
-  var sar = sw / sh;
-  var par = photo.w / photo.h;
-  var w = 0;
-  var h = 0;
-  if(sar>=par){
-    h = sh;
-    w = h * par;
+  var sratio = sw / sh;
+
+  if(sratio > ratio){
+    currentheight = sh;
   }
   else{
-    w = sh;
-    h = w / par;
+    currentheight = sw / ratio;
   }
 
-  $('#mynetwork').css('width',w);
-  $('#mynetwork').css('height',h);
+  resizeCanvas();
+}
+
+function changeRatio(){
+  ratio = $('#ratiof').find(':selected').val();
+  resizeCanvas();
 }
 
 function switchPhysics(){
