@@ -189,17 +189,30 @@ function VisDataSet(){
 			"from": Id2Int(r.HUSB),
 			"to": current_id,
 			"arrows": 'to',
+			"color": {
+				color: "#FFFFFF",
+				"opacity": 0.5
+			},
 		});
 		//Wife to Family
 		edges.push({
 			"from": Id2Int(r.WIFE),
 			"to": current_id,
 			"arrows": 'to',
+			"color": {
+				color: "#FFFFFF",
+				"opacity": 0.5
+			},
 		});
 		//Husb to Wife
 		edges.push({
 			"from": Id2Int(r.HUSB),
 			"to": Id2Int(r.WIFE),
+			"dashes": true,
+			"color": {
+				color: "#FFFFFF",
+				"opacity": 0.5
+			},
 		});
 		//Family to Child
 		var incr = "";
@@ -208,6 +221,10 @@ function VisDataSet(){
 				"from": current_id,
 				"to": Id2Int(r["CHIL" + incr]),
 				"arrows": 'to',
+				"color": {
+					color: "#FFFFFF",
+					"opacity": 0.5
+				},
 			});
 			incr = parseInt(1 + incr);
 		}

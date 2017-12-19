@@ -41,7 +41,6 @@ function draw() {
       }
     },
     edges: {
-      color: 'white',
       smooth: false
     },
     "physics": {
