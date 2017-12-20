@@ -128,7 +128,7 @@ vis.Network.prototype.selectGroup = function(groupName){
   this.selectNodes(nodesId);
 }
 
-vis.Network.prototype.alignSelected = function(direction){
+vis.Network.prototype.alignSelected = function(y = null){
   var selNodes = this.getSelectedNodes();
 
   //Find Average Position
@@ -147,7 +147,11 @@ vis.Network.prototype.alignSelected = function(direction){
   //Align to Average Position
   selNodes.forEach(function(n){
     var node = nodes[n];
-    node.y = avg;
+    var ny = avg;
+    if(y != null){
+      ny = y;
+    }
+    node.y = ny;
   });
 
   this.redraw();
@@ -178,4 +182,35 @@ function selectparents(){
 
 function selectchildren(){
   network.selectNeighbours('to');
+}
+
+function prepare(gap = 100){
+  network.selectGroup('gen0');
+  for(var i=0;i<10;i++){
+    network.alignSelected(i*gap);
+    network.selectNeighbours('to');
+  }
+}
+
+function compactFam(hid, xgap = 300, ygap = 200){
+  var hnode = network.nodesHandler.body.nodes[hid];
+  var famnode = network.nodesHandler.body.nodes[network.getConnectedNodes(hnode.id,'to')[0]];
+  var wnode = network.nodesHandler.body.nodes[network.getConnectedNodes(famnode.id,'from')[0]];
+  if(hnode.id == wnode.id){
+    wnode = network.nodesHandler.body.nodes[network.getConnectedNodes(famnode.id,'from')[1]];
+  }
+
+  console.log(hnode);
+  console.log(famnode);
+  console.log(wnode);
+  //Horizontal Align Wife
+  wnode.y = hnode.y;
+  //Vertial Gap Wife Node
+  wnode.x = hnode.x + xgap;
+  //Horizontal Gap Fam Node
+  famnode.y = hnode.y + ygap;
+  //Center Fam Node
+  famnode.x = hnode.x + xgap/2;
+
+  network.redraw();
 }
