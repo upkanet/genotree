@@ -181,3 +181,12 @@ vis.Network.prototype.alignSelected = function(direction){
 
   this.redraw();
 }
+
+function selectgroup(){
+  var g = $('#selgroup').val();
+  network.selectGroup(g);
+}
+
+function alignselection(){
+  network.alignSelected();
+}
