@@ -170,6 +170,7 @@ function VisDataSet(){
 		var ind = {
 			"id": Id2Int(r.id), 
 			"shape": 'circularImage',
+			"group": 'gen' + generation(r.id),
 			"image": getImg(r.id),
 			"label": getFName(r.NAME) + '\n' + getLName(r.NAME) + '\n' + getDates(r)
 		};

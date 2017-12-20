@@ -140,3 +140,19 @@ function switchPhysics(){
   }
   $('#physicBtn').html('Physics '+swVal);
 }
+
+vis.Network.prototype.getGroup = function(groupName){
+  var nodesId = [];
+  for(k in this.nodesHandler.body.nodes){
+    var n = this.nodesHandler.body.nodes[k];
+    if(n.options.group == groupName){
+      nodesId.push(n.id);
+    }
+  }
+  return nodesId;
+}
+
+vis.Network.prototype.selectGroup = function(groupName){
+  var nodesId = this.getGroup(groupName);
+  this.selectNodes(nodesId);
+}
