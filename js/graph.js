@@ -156,3 +156,28 @@ vis.Network.prototype.selectGroup = function(groupName){
   var nodesId = this.getGroup(groupName);
   this.selectNodes(nodesId);
 }
+
+vis.Network.prototype.alignSelected = function(direction){
+  var selNodes = this.getSelectedNodes();
+
+  //Find Average Position
+  var avg = 0;
+  var sum = 0;
+  var i = 0;
+  var nodes = this.nodesHandler.body.nodes;
+  
+  selNodes.forEach(function(n){
+    var node = nodes[n];
+    sum += node.y;
+    i += 1;
+  });
+  avg = sum / i;
+
+  //Align to Average Position
+  selNodes.forEach(function(n){
+    var node = nodes[n];
+    node.y = avg;
+  });
+
+  this.redraw();
+}
