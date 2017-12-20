@@ -59,38 +59,9 @@ function draw() {
     }
   };
   network = new vis.Network(container, data, options);
-  //Click
-  network.on('click',function(params){
-    var nid = params.nodes[0];
-    //Case family id
-    if(nid >= 500){
-      selectFromFamNode(nid, 'from');
-    }
-    else if(nid){
-      selectedNodes.pushunique(nid);
-    }
-    //Case not a node
-    if(!nid){
-      //Clear selection
-      selectedNodes = [];
-    }
-    network.selectNodes(selectedNodes);
-  });
 
   console.log("Drawing completed");
 }
-
-
-function selectFromFamNode(famNodeId, direction){
-  var parNodes = network.getConnectedNodes(famNodeId, direction);
-  console.log("add "+famNodeId);
-  selectedNodes.pushunique(famNodeId);
-  parNodes.forEach(function(e){
-    console.log("add "+e);
-    selectedNodes.pushunique(e);
-  });
-}
-
 
 //Canvas size
 var photoheight = 5120;
@@ -182,6 +153,16 @@ vis.Network.prototype.alignSelected = function(direction){
   this.redraw();
 }
 
+vis.Network.prototype.selectNeighbours = function(direction){
+  var selNodes = this.getSelectedNodes();
+  var nextSelNodes = [];
+  selNodes.forEach(function(n){
+    var narr = network.getConnectedNodes(n,direction);
+    nextSelNodes = nextSelNodes.concat(narr);
+  });
+  network.selectNodes(nextSelNodes,true);
+}
+
 function selectgroup(){
   var g = $('#selgroup').val();
   network.selectGroup(g);
@@ -189,4 +170,12 @@ function selectgroup(){
 
 function alignselection(){
   network.alignSelected();
+}
+
+function selectparents(){
+  network.selectNeighbours('from');
+}
+
+function selectchildren(){
+  network.selectNeighbours('to');
 }

@@ -166,6 +166,8 @@ function getImg(indiv_id){
 function VisDataSet(){
 	var nodes = [];
 	var edges = [];
+	//NODES
+	//Poeple
 	indivs().each(function(r){
 		var ind = {
 			"id": Id2Int(r.id), 
@@ -176,12 +178,14 @@ function VisDataSet(){
 		};
 		nodes.push(ind);
 	});
+	//Families
 	fams().each(function(r){
 		var current_id = 500 + Id2Int(r.id);
 		var fam = {
 			"id": current_id,
 			"shape": 'circle',
-			"size": 2,
+			"size": 5,
+			"color": "rgba(255,255,255,1)"
 		};
 		nodes.push(fam);
 		//EDGES
@@ -189,7 +193,7 @@ function VisDataSet(){
 		edges.push({
 			"from": Id2Int(r.HUSB),
 			"to": current_id,
-			"arrows": 'to',
+			"arrows": 'middle',
 			"color": {
 				color: "#FFFFFF",
 				"opacity": 0.5
@@ -206,7 +210,7 @@ function VisDataSet(){
 			},
 		});
 		//Husb to Wife
-		edges.push({
+		/*edges.push({
 			"from": Id2Int(r.HUSB),
 			"to": Id2Int(r.WIFE),
 			"dashes": true,
@@ -214,7 +218,7 @@ function VisDataSet(){
 				color: "#FFFFFF",
 				"opacity": 0.5
 			},
-		});
+		});*/
 		//Family to Child
 		var incr = "";
 		while(r["CHIL" + incr]){
